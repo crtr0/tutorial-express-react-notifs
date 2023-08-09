@@ -6,10 +6,12 @@ const app = express();
 app.use(express.json()); // for parsing application/json
 app.use(cors());
 
-const courier = CourierClient({ authorizationToken: "YOUR_AUTH_TOKEN" });
+const courier = CourierClient({
+  authorizationToken: "YOUR_COURIER_AUTH_TOKEN",
+});
 
 app.post("/send-email", async (req, res) => {
-  const { email, templateId } = req.body;
+  const { email, templateId, name } = req.body;
 
   try {
     const { messageId } = await courier.send({
@@ -18,7 +20,9 @@ app.post("/send-email", async (req, res) => {
           email: email,
         },
         template: templateId,
-        data: {},
+        data: {
+          name: name,
+        },
       },
     });
 
