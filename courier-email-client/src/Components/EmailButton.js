@@ -9,7 +9,7 @@ const EmailButton = () => {
       },
       body: JSON.stringify({
         email: "YOUR_EMAIL",
-        templateId: "YOUR_AUTH_TOKEN",
+        templateId: "YOUR_TEMPLATE_ID",
       }),
     });
     const data = await response.json();
